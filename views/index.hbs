@@ -1,0 +1,60 @@
+  <ul>
+    <li><b>N</b>ode</li>
+    <li><b>E</b>xpressJS</li>
+    <li><b>M</b>ySQL</li>
+  </ul>
+
+  <p>Also included in this boilerplate:</p>
+
+  <ul>
+    <li>Express Handlebars for templating</li>
+    <li><a href="http://docs.sequelizejs.com/">Sequelize</a> for MySQL CRUD operations</li>
+    <li>A users table with authentication built in</li>
+    <li>Bycrpt for password hashing</li>
+    <li>Session management via <code>express-session</code></li>
+    <li>Bootstrap as a styling framework</li>
+    <li>Browserify to open up node modules to the browser</li>
+    <li>Browser sync to refresh the browser</li>
+  </ul>
+
+  <h4> Get Going </h4>
+
+  <p>You will need to create a MySQL database first manually, however you see fit. It could be included here but the complications it imposes outweigh the ease of simply creating one manually.</p>
+
+  <p>
+      <ol>
+        <li>Clone the repo</li>
+        <li>Run <code>yarn</code> or <code>npm install</code> </li>
+        <li>A database name is required in <code>/database.js</code> <small>(Tables are generated via Sequelize)</small></li>
+        <li>Run <code>npm run dev</code> (after changes - no restart necessary, and browser refreshes automatically too)</li>
+        <li>Open <a href="http://localhost:3000/" target="_blank">http://localhost:3000</a></li>
+      </ol>
+  </p>
+
+  <h4>To Run</h4>
+
+  <p>In the base project folder, run: <code>npm run dev</code></p>
+
+  <h4>Developing From Here</h4>
+
+  <p>CSS changes should be made in <code>client/sass/css</code></p>
+
+  <h4>Database Changes</h4>
+
+    <p>All database changes are done via Sequelize, and you can upgrade/downgrade the database via <a href="http://docs.sequelizejs.com/manual/tutorial/migrations.html">Sequelize migrations.</a></p>
+
+    <p>There is a test migration already in the migrations folder. This alters the user table by adding a username field after the id column. Feel free to take a look at this migration file and understand what is going on - its quite simple really.</p>
+
+    <h6>To run the test migration:</h6>
+
+    <ol>
+      <li>First ensure you have previously run: <code>npm install</code> or <code>yarn</code> to initialize the project</li>
+      <li>Next, in the base project folder, run the command: <code>node_modules/.bin/sequelize db:migrate</code></li>
+      <li>This will add the username column specified in the migrations file in the <code>/migrations</code> folder</li>
+      <li>Take a look at your users table and see the new column in place (hopefully)</li>
+      <li>Simply run <code>node_modules/.bin/sequelize db:migrate:undo</code> to revert the migration and remove the column</li>
+    </ol>
+
+    <hr>
+
+  <footer>&copy; {{ year }} <a href="mailto:shanehoban@gmail.com>shanehoban@gmail.com</a> </footer>

@@ -1,0 +1,30 @@
+<div class="container row">
+    <form action="/profile" method="post">
+        <div class="form-group">
+            <label>Email:</label>
+            <input class="form-control" type="email" name="email" value="{{ user.email }}"/>
+        </div>
+
+        <div class="form-group">
+            <label>New Password:</label>
+            <input class="form-control" type="password" name="newPassword"/>
+        </div>
+
+        <div class="form-group">
+            <label>Repeat New Password:</label>
+            <input class="form-control" type="password" name="confirmNewPassword"/>
+        </div>
+
+        <hr>
+
+        <div class="form-group">
+            <label>*Current Password:</label>
+            <input class="form-control" type="password" name="password" required/>
+            <small id="profilePasswordHelp" class="form-text text-muted">You must enter your current password to update your profile.</small>
+        </div>
+
+        <div class="form-group">
+            <input class="btn btn-primary" type="submit" value="Update Profile"/>
+        </div>
+    </form>
+</div>

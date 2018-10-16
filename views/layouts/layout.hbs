@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NEM Base Project</title>
+  {{> includes}}
+</head>
+<body>
+  <div class="app">
+    {{> header}}
+
+    {{#if error}}
+        <div class="alert alert-danger" role="alert">{{error}}</div>
+    {{/if}}
+
+    {{#if info}}
+        <div class="alert alert-primary" role="alert">{{info}}</div>
+    {{/if}}
+
+    {{{body}}}
+
+    {{> scripts}}
+  </div>
+</body>
+</html>

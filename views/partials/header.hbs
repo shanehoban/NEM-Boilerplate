@@ -1,0 +1,15 @@
+  <h1>NEM Boilerplate</h1>
+  <nav>
+    <a href="/index">Home</a>
+    <a href="/dashboard">Dashboard</a>
+    {{#unless user}}
+      <a href="/login">Login</a>
+      <a href="/signup">Sign Up</a>
+    {{/unless}}
+    {{#if user}}
+      <a href="/profile">Profile</a>
+      <a href="/logout">Logout</a>
+    {{/if}}
+  </nav>
+
+<hr>
