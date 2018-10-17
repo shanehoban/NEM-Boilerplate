@@ -35,7 +35,7 @@ Also in the base of the project there is a file called `database.js`. This sets 
 
 # PHP Include Equivalent in Node
 
-For this, we must use a templating engine. For the NEM Boilerplate project, we use Express Handlebars. You can see how it is set up in `app.js`. A PHP include equivalent in Handlebars is called a partial. Actually, the layout for your page is broken down a bit - if you see the `/views` folder, we have a:
+For this, we must use a templating engine. For the NEM Boilerplate project, we use Express Handlebars. You can see how it is set up in `app.js`. A PHP include equivalent in Handlebars is called a partial. Actually, the layout for your page is broken down a bit - if you see the `/views` folder, we have:
   - /layouts
   - /pages
   - /partials => this is where your includes would be
