@@ -83,7 +83,7 @@ router(app, db);
 
 app.get('/logout', (req, res) => {
   res.clearCookie('user_sid');
-  res.redirect('/');
+  return res.redirect('/');
 });
 
 // catch 404 and forward to error handler

@@ -14,7 +14,7 @@ module.exports = {
     req.session.user = user;
 
     if(redirect){
-      redirect();
+      return redirect();
     }
   },
 

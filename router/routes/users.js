@@ -5,15 +5,15 @@ var helpers = require('../helpers.js');
 module.exports = (app, db) => {
 
   // GET all owners
-  app.get('/users', (req, res) => {
+  app.get('/users', helpers.forceLogin, (req, res) => {
     db.users.findAll()
       .then(users => {
-        res.render('users/users', { users: users });
+        res.render('users/users', { user: req.session.user, users: users });
       });
   });
 
   // GET one owner by id
-  app.get('/user/:email', (req, res) => {
+  app.get('/user/:email', helpers.forceLogin, (req, res) => {
     var email = req.params.email;
     db.users.find({
       where: { email: email}

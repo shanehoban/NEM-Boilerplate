@@ -1,4 +1,4 @@
-var bcrypt = require('bcrypt');
+var bcrypt = require('bcryptjs');
 
 module.exports = (sequelize, type) => {
 
@@ -18,7 +18,7 @@ module.exports = (sequelize, type) => {
   }, {
       hooks: {
         beforeCreate: (user) => {
-          const salt = bcrypt.genSaltSync();
+          const salt = bcrypt.genSaltSync(10);
           user.password = bcrypt.hashSync(user.password, salt);
         }
       },
