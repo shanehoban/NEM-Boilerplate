@@ -2,7 +2,7 @@
   <nav>
     <a href="/index">Home</a>
     <a href="/dashboard">Dashboard</a>
-    {{#unless user}}
+    {{#unless user}} <!-- unless is like the opposite of if in handlebars, unfortunately you can do 'if !user' -->
       <a href="/login">Login</a>
       <a href="/signup">Sign Up</a>
     {{/unless}}

@@ -8,6 +8,7 @@ var routes = [
   require('./routes/pages')
 ];
 
+// we are exporting the router function here (which is called in app.js)
 // Add access to the app and db objects to each route - which was passed in app.js
 module.exports = function router(app, db) {
   return routes.forEach((route) => {

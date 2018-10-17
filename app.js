@@ -52,7 +52,7 @@ if(app.get('env') == 'development') {
 
 // initialize express-session to allow us track the logged-in user across sessions
 app.use(session({
-    key: 'user_sid',
+    key: 'nem-boilerplate-sesh',
     secret: 'big_fat_random_secret',
     resave: false,
     saveUninitialized: false,

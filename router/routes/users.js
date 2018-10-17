@@ -12,7 +12,7 @@ module.exports = (app, db) => {
   app.get('/users', helpers.forceLogin, (req, res) => {
     db.users.findAll()
       .then(users => {
-        res.render('users/users', { user: req.session.user, users: users });
+        res.render('pages/users', { user: req.session.user, users: users });
       });
   });
 
@@ -23,7 +23,7 @@ module.exports = (app, db) => {
       where: { email: email}
     })
       .then(user => {
-        res.render('users/user', { user: user });
+        res.render('pages/user', { user: user });
       });
   });
 
