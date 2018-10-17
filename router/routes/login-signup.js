@@ -4,6 +4,11 @@ var helpers = require('../helpers.js');
 
 module.exports = (app, db) => {
 
+  app.get('/logout', (req, res) => {
+    res.clearCookie('user_sid');
+    return res.redirect('/');
+  });
+
   app.get('/login', (req, res) => {
     res.render('pages/login', { error: helpers.getError(req), info: helpers.getInfo(req) });
   });

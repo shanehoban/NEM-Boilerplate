@@ -12,9 +12,11 @@ var sequelize = new Sequelize('mysql://root@localhost:3306/' + DB_NAME, {
   }
 });
 
+// We do this so we don't have to reinclude sequelize all over the place
 var db = {};
     db.Sequelize = Sequelize;
     db.sequelize = sequelize;
+    // do this for each models that we have
     db.users = require('./models/user')(sequelize, Sequelize);
 
 module.exports = db;

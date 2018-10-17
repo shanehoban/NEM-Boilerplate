@@ -4,18 +4,19 @@ var session = require('express-session');
 var exphbs  = require('express-handlebars');
 var sassMiddleware = require('node-sass-middleware');
 var browserify = require('browserify-middleware');
-var path = require('path');
 var cookieParser = require('cookie-parser');
 var morgan = require('morgan');
 
+// This is where all of our routes are living
 var router = require('./router/index');
 var db = require('./database');
 var app = express();
 
+// We are setting up our handlebars templating engine here:
 var hbs = exphbs.create({
   extname: '.hbs',
-  defaultLayout: 'layout',
-  // Specify helpers which are only registered on this instance.
+  defaultLayout: 'layout', // the default layout of our page (located in views/layouts/layout)
+  // Specify helpers which can be used in handlebar templates
   helpers: {
       foo: function () { return 'foo'; },
       bar: function () { return 'bar'; }
@@ -26,6 +27,7 @@ var hbs = exphbs.create({
 app.engine('hbs', hbs.engine);
 app.set('view engine', 'hbs'); // hbs is the file extension we use
 
+// Set up SaSS middleware - complies sass for us and moves it to a different directory
 app.use (
    sassMiddleware({
      src: __dirname + '/client/sass/',
@@ -48,7 +50,7 @@ if(app.get('env') == 'development') {
   app.use(require('connect-browser-sync')(bs));
 }
 
-// initialize express-session to allow us track the logged-in user across sessions.
+// initialize express-session to allow us track the logged-in user across sessions
 app.use(session({
     key: 'user_sid',
     secret: 'big_fat_random_secret',
@@ -68,23 +70,22 @@ app.use((req, res, next) => {
     next();
 });
 
+// Not sure how necessary this block really is honestly for the scope of this app
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+// Here we are setting up routes for all of our external stuff we wish to include
+// It's nice because in the HTML we can simply link to '/bootstrap', but here we can route that to within the node modules folder if needs be
 // first parameter is the mount point, second is the location in the file system
 app.use('/bootstrap', express.static(__dirname + '/node_modules/bootstrap/dist/'));
 app.use("/js", express.static(__dirname + "/client/js"));
 app.use("/img", express.static(__dirname + "/client/img"));
 app.use("/css", express.static(__dirname + "/client/css"));
 
+// see the index.js file within /router folder to see what's going on here
 router(app, db);
-
-app.get('/logout', (req, res) => {
-  res.clearCookie('user_sid');
-  return res.redirect('/');
-});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -102,7 +103,8 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-db.sequelize.sync(/*{ force: true }*/) // force true causes the database to be dropped
+// Here we set up our database, and afterward, start the app :)
+db.sequelize.sync(/*{ force: true }*/) // force true causes the tables to be dropped and reinserted
   .then(() => {
     app.listen(3005, () => {
       console.log("App started on port " + app.get('port'));

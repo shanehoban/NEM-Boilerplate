@@ -5,7 +5,7 @@ var helpers = require('../helpers.js');
 module.exports = (app, db) => {
 
 app.post('/profile', helpers.forceLogin, (req, res) => {
-  var currentEmail = req.session.user.email; // get current logged in user
+  var currentEmail = req.session.user.email; // get current logged in user's email
   var newEmail = req.body.email;
   var currentPassword = req.body.password;
   var newPassword = req.body.newPassword;
@@ -22,6 +22,7 @@ app.post('/profile', helpers.forceLogin, (req, res) => {
           return res.redirect('/profile?error=current_password_incorrect');
     } else {
       var updatedAttributes = {};
+      // here we check if we recieved new attributes, as we don't want them to be set/updated as null
       if(newEmail){updatedAttributes.email = newEmail}
       if(newPassword){updatedAttributes.password = db.users.prototype.hashPassword(newPassword);}
 

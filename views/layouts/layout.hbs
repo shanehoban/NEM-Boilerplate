@@ -4,13 +4,13 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>NEM Base Project</title>
-  {{> includes}}
+  {{> includes}} <!-- This is equivalent to the PHP include function -->
 </head>
 <body>
   <div class="app">
-    {{> header}}
+    {{> header}} <!-- This is equivalent to the PHP include function -->
 
-    {{#if error}}
+    {{#if error}} <!-- This is equivalent to PHP if statement -->
         <div class="alert alert-danger" role="alert">{{error}}</div>
     {{/if}}
 
@@ -18,9 +18,9 @@
         <div class="alert alert-primary" role="alert">{{info}}</div>
     {{/if}}
 
-    {{{body}}}
+    {{{ body }}} <!-- This is where the file linked in the routers render function gets put. Triple handlebars means the HTML is rendered. Double will be plaintext. -->
 
-    {{> scripts}}
+    {{> scripts}} <!-- This is equivalent to the PHP include function -->
   </div>
 </body>
 </html>
